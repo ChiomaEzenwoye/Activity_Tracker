@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Activity Tracker</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!-- Main Navigation -->
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<nav class = "navbar navbar-dark bg-dark">
+<a class="navbar-brand" th:href="@{/dashboard}">Vee's Tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="nav justify-content-right">
+        <li>
+            <th:block th:if="${session.email != null}">
+                <h5 style="color: white">Welcome  <span th:text="${#session.getAttribute('name')}"></span></h5>
+            </th:block>
+        </li>
+    </ul>
+
+
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ml-auto">
+
+
+            <li class="nav-item">
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <th:block th:if="${session.email == null}">
+                                <a class="dropdown-item" th:href="@{/login}">Login</a>
+                                <a class="dropdown-item" th:href="@{/register}">Sign Up</a>
+                            </th:block>
+                            <th:block th:if="${session.email != null}">
+                                <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                            </th:block>
+                        </div>
+                    </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Content Section -->
+<section layout:fragment="content">
+    <p>This is filled by the content template.</p>
+</section>
+
+<!-- Footer -->
+<footer class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-muted">&copy; 2022 VEE'S Butter Group. CHAM.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Optional Section -->
+<th:block layout:fragment="optional" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

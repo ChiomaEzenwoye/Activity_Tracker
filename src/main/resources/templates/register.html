@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Activity Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+    <div>
+        <img class="img-fluid" th:src="@{todo.webp}" />
+    </div>
+    <div class="container text-center shadow-lg p-3 mb-5 bg-body rounded" >
+
+        <div>
+            <h3>Sign up by filling the form below</h3>
+        </div>
+
+        <form th:action="@{/userRegistration}" th:object="${userRegistrationDetails}"
+              method="post" style="max-width: 600px; margin: 0 auto;">
+            <div class="m-3">
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Name: </label>
+                    <div class="col-8">
+                        <input type="text" th:field="*{name}" class="form-control"
+                               required minlength="2" maxlength="50"/>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">E-mail: </label>
+                    <div class="col-8">
+                        <input type="email" th:field="*{email}" class="form-control" required />
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Password: </label>
+                    <div class="col-8">
+                        <input type="password" th:field="*{password}" class="form-control"
+                               required minlength="4" maxlength="10"/>
+                    </div>
+                </div>
+                <br>
+                <a th:href="@{/login}">Already have an account? Login here</a><br>
+                <div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

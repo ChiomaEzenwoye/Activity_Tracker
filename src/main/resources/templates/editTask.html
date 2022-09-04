@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Activity Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<title>Create New Task</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <header>
+    </header>
+    <main class="container">
+        <div class="card mb-3">
+            <h1 class="my-highest-header card-header">Edit Task</h1>
+            <div class="card card-body">
+                <form th:action="@{/edit/{id}(id=${singleTask.id})}" th:object="${taskBody}" method="post">
+                    <div class="form-group">
+                        <label for="name" class="form-control-label">Task Title</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-pen"></i>
+                            </span>
+                            </div>
+                            <input type="text" class="form-control"
+                                   th:value="${singleTask.title}" id="name" name="title"/>
+                        </div>
+                    </div>
+                    <!--description-->
+                    <div class="form-group">
+                        <label for="description" class="form-control-label">Task Description</label>
+                        <textarea class="form-control"
+                                  th:value="${taskBody.description}" id="description" name="description">  </textarea>
+                    </div>
+                    <input type="submit" value="Update Task" class="btn btn-info"/>
+                    <input type="reset" value="Clear" class="btn btn-secondary"/>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
